@@ -25,7 +25,7 @@ searchBar.addEventListener("input",function(){
 
     timeoutId = setTimeout(function(){
         getMovieUrl();
-    },3000);
+    },2000);
 });
 
 // function to get movie url
@@ -113,7 +113,6 @@ function showMoviePosters(movieListArray){
         releaseDatePTag.classList.add("font-semibold","text-lg","italic","text-green-600");
 
         // Imdb rating
-
         const imdb_randomNumbers = document.createElement("p");
         imdb_randomNumbers.textContent = Math.round(Math.random() * 10);
         // console.log("randomNumber:",imdb_randomNumbers);
