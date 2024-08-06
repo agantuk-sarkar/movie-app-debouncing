@@ -11,6 +11,10 @@ const searchBar = document.getElementById("search");
 const movieListDiv = document.querySelector(".movieList-names");
 const headingTag = document.querySelector(".headingTag");
 const moviePostersDiv = document.querySelector(".movie-posters");
+const clearSearch = document.querySelector(".clear-search");
+
+// event for clear search icon
+clearSearch.addEventListener("click",clearSearchIcon);
 
 // using input event for input field
 searchBar.addEventListener("input",function(){
@@ -29,6 +33,7 @@ function getMovieUrl(){
 
     if(searchBar.value){
         search = searchBar.value;
+        movieListDiv.style.display = "block";
         const movieSearchUrl = `${movieBaseUrl}&s=${search}&plot=full`;
         fetchMovieUrl(movieSearchUrl);
     } else{
@@ -85,9 +90,9 @@ function showMoviePosters(movieListArray){
 
         posterMainDiv.classList.add("border-2","border-red-500", "h-full","flex","flex-col","justify-between","rounded-lg","shadow-xl","cursor-pointer");
 
-        posterImageDiv.classList.add("border-2","border-green-500","h-60","rounded-lg","cursor-pointer");
+        posterImageDiv.classList.add("border-2","border-green-500","h-72","rounded-lg","cursor-pointer");
 
-        posterDetailsDiv.classList.add("border-2","border-teal-500","h-40","rounded-lg","px-2","relative");
+        posterDetailsDiv.classList.add("border-2","border-teal-500","h-28","rounded-lg","px-2","relative");
 
         // creating image tag for showing movie images
         const imgTag = document.createElement("img");
@@ -111,12 +116,12 @@ function showMoviePosters(movieListArray){
 
         const imdb_randomNumbers = document.createElement("p");
         imdb_randomNumbers.textContent = Math.round(Math.random() * 10);
-        console.log("randomNumber:",imdb_randomNumbers);
+        // console.log("randomNumber:",imdb_randomNumbers);
 
         const imdb_rating = document.createElement("p");
         imdb_rating.textContent = `IMDB: ${imdb_randomNumbers.textContent}`;
         imdb_rating.classList.add("font-semibold","text-lg","italic","text-red-500");
-        console.log("imdbRating:",imdb_rating);
+        // console.log("imdbRating:",imdb_rating);
 
         // appending movie title, release date and imdb rating into details main div.
         posterDetailsDiv.append(movieTiltePTag,releaseDatePTag,imdb_rating);
@@ -128,4 +133,10 @@ function showMoviePosters(movieListArray){
         moviePostersDiv.append(posterMainDiv);
 
     })
+}
+
+// function for clear search icon
+function clearSearchIcon(){
+    searchBar.value = null;
+    movieListDiv.style.display = "none";
 }
