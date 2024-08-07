@@ -12,6 +12,7 @@ const movieListDiv = document.querySelector(".movieList-names");
 const headingTag = document.querySelector(".headingTag");
 const moviePostersDiv = document.querySelector(".movie-posters");
 const clearSearch = document.querySelector(".clear-search");
+const hoverBox = document.querySelector(".hover-box");
 
 // event for clear search icon
 clearSearch.addEventListener("click",clearSearchIcon);
@@ -88,11 +89,23 @@ function showMoviePosters(movieListArray){
         const posterImageDiv = document.createElement("div");
         const posterDetailsDiv = document.createElement("div");
 
-        posterMainDiv.classList.add("border-2","border-red-500", "h-full","flex","flex-col","justify-between","rounded-lg","shadow-xl","cursor-pointer");
+        posterMainDiv.classList.add("border-2","border-red-500", "h-full","flex","flex-col","justify-between","rounded-lg","shadow-xl","cursor-pointer","hover:shadow-md");
 
-        posterImageDiv.classList.add("border-2","border-green-500","h-72","rounded-lg","cursor-pointer");
+        posterMainDiv.addEventListener("mouseover",function(){
 
-        posterDetailsDiv.classList.add("border-2","border-teal-500","h-28","rounded-lg","px-2","relative");
+            const hoverDiv = document.createElement("div");
+
+            hoverDiv.classList.add("border-2","border-sky-600","h-[30vh]","w-[20%]");
+
+            hoverBox.append(hoverDiv);
+        });
+
+        posterMainDiv.addEventListener("mouseleave",onMouseLeave);
+
+
+        posterImageDiv.classList.add("border-2","border-green-500","h-60","rounded-lg","cursor-pointer");
+
+        posterDetailsDiv.classList.add("border-2","border-teal-500","h-40","rounded-lg","px-2","relative");
 
         // creating image tag for showing movie images
         const imgTag = document.createElement("img");
@@ -139,3 +152,16 @@ function clearSearchIcon(){
     searchBar.value = null;
     movieListDiv.style.display = "none";
 }
+
+// function for mouse hover
+// function onMouseHover(){
+
+//     // hoverMainDiv.innerHTML = "";
+    
+// }
+
+// function for mouse leave
+function onMouseLeave(){
+    hoverBox.innerHTML = "";
+}
+
