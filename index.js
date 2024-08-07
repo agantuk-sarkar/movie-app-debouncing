@@ -52,6 +52,7 @@ async function fetchMovieUrl(movieApi){
             let movieData = await response.json();
             let movie_list_array = movieData.Search;
             console.log("movieList:",movie_list_array);
+
             showMovieList(movie_list_array);
             showMoviePosters(movie_list_array);
         }
@@ -82,6 +83,8 @@ function showMoviePosters(movieListArray){
 
     moviePostersDiv.innerHTML = "";
 
+    headingTag.style.display = "flex";
+
     // using higher order function
     movieListArray?.forEach(function(movies){
 
@@ -91,15 +94,40 @@ function showMoviePosters(movieListArray){
 
         posterMainDiv.classList.add("border-2","border-red-500", "h-full","flex","flex-col","justify-between","rounded-lg","shadow-xl","cursor-pointer","hover:shadow-md");
 
+        // event for mouse hover and showing movie poster while hovering
         posterMainDiv.addEventListener("mouseover",function(){
+
+            hoverBox.innerHTML = "";
 
             const hoverDiv = document.createElement("div");
 
-            hoverDiv.classList.add("border-2","border-sky-600","h-[30vh]","w-[20%]");
+            hoverDiv.classList.add("border-2","border-sky-600","h-full","w-[20%]","mx-auto","shadow-md","rounded-lg");
+
+            const hoverImageDiv = document.createElement("div");
+            hoverImageDiv.classList.add("border-2","border-red-500","h-40");
+
+            const hoverImageTag = document.createElement("img");
+            hoverImageTag.src = movies.Poster;
+            hoverImageTag.classList.add("h-full","w-full");
+            hoverImageDiv.append(hoverImageTag);
+
+            const watchNowDiv = document.createElement("div");
+            watchNowDiv.classList.add("border-2","border-green-500","h-20");
+
+            const watchNowButton = document.createElement("button");
+            watchNowButton.textContent = "Watch Now";
+            watchNowButton.classList.add("shadow-md","h-[5rem]","w-full","bg-black","text-white","text-center","italic","p-2","text-2xl");
+            watchNowDiv.append(watchNowButton);
+
+            hoverDiv.append(hoverImageDiv,watchNowDiv);
 
             hoverBox.append(hoverDiv);
+
+            // const hoverMoviePoster = movies;
+            // console.log("hoverMoviePoster:",hoverMoviePoster);
         });
 
+        // event for mouse leave hovering
         posterMainDiv.addEventListener("mouseleave",onMouseLeave);
 
 
@@ -153,15 +181,7 @@ function clearSearchIcon(){
     movieListDiv.style.display = "none";
 }
 
-// function for mouse hover
-// function onMouseHover(){
-
-//     // hoverMainDiv.innerHTML = "";
-    
-// }
-
 // function for mouse leave
 function onMouseLeave(){
     hoverBox.innerHTML = "";
 }
-
