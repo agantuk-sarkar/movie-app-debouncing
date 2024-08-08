@@ -35,6 +35,7 @@ function getMovieUrl(){
     if(searchBar.value){
         search = searchBar.value;
         movieListDiv.style.display = "block";
+        
         const movieSearchUrl = `${movieBaseUrl}&s=${search}&plot=full`;
         fetchMovieUrl(movieSearchUrl);
     } else{
@@ -51,7 +52,6 @@ async function fetchMovieUrl(movieApi){
         if(response.ok){
             let movieData = await response.json();
             let movie_list_array = movieData.Search;
-            console.log("movieList:",movie_list_array);
 
             showMovieList(movie_list_array);
             showMoviePosters(movie_list_array);
@@ -123,8 +123,6 @@ function showMoviePosters(movieListArray){
 
             hoverBox.append(hoverDiv);
 
-            // const hoverMoviePoster = movies;
-            // console.log("hoverMoviePoster:",hoverMoviePoster);
         });
 
         // event for mouse leave hovering
