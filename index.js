@@ -12,6 +12,7 @@ const movieListDiv = document.querySelector(".movieList-names");
 const headingTag = document.querySelector(".headingTag");
 const moviePostersDiv = document.querySelector(".movie-posters");
 const clearSearch = document.querySelector(".clear-search");
+const hoverBox = document.querySelector(".hover-box");
 
 // event for clear search icon
 clearSearch.addEventListener("click",clearSearchIcon);
@@ -34,6 +35,7 @@ function getMovieUrl(){
     if(searchBar.value){
         search = searchBar.value;
         movieListDiv.style.display = "block";
+        
         const movieSearchUrl = `${movieBaseUrl}&s=${search}&plot=full`;
         fetchMovieUrl(movieSearchUrl);
     } else{
@@ -50,7 +52,7 @@ async function fetchMovieUrl(movieApi){
         if(response.ok){
             let movieData = await response.json();
             let movie_list_array = movieData.Search;
-            console.log("movieList:",movie_list_array);
+
             showMovieList(movie_list_array);
             showMoviePosters(movie_list_array);
         }
@@ -81,6 +83,8 @@ function showMoviePosters(movieListArray){
 
     moviePostersDiv.innerHTML = "";
 
+    headingTag.style.display = "flex";
+
     // using higher order function
     movieListArray?.forEach(function(movies){
 
@@ -88,11 +92,46 @@ function showMoviePosters(movieListArray){
         const posterImageDiv = document.createElement("div");
         const posterDetailsDiv = document.createElement("div");
 
-        posterMainDiv.classList.add("border-2","border-red-500", "h-full","flex","flex-col","justify-between","rounded-lg","shadow-xl","cursor-pointer");
+        posterMainDiv.classList.add("border-2","border-red-500", "h-full","flex","flex-col","justify-between","rounded-lg","shadow-xl","cursor-pointer","hover:shadow-md");
 
-        posterImageDiv.classList.add("border-2","border-green-500","h-72","rounded-lg","cursor-pointer");
+        // event for mouse hover and showing movie poster while hovering
+        posterMainDiv.addEventListener("mouseover",function(){
 
-        posterDetailsDiv.classList.add("border-2","border-teal-500","h-28","rounded-lg","px-2","relative");
+            hoverBox.innerHTML = "";
+
+            const hoverDiv = document.createElement("div");
+
+            hoverDiv.classList.add("border-2","border-sky-600","h-full","w-[20%]","mx-auto","shadow-md","rounded-lg");
+
+            const hoverImageDiv = document.createElement("div");
+            hoverImageDiv.classList.add("border-2","border-red-500","h-40");
+
+            const hoverImageTag = document.createElement("img");
+            hoverImageTag.src = movies.Poster;
+            hoverImageTag.classList.add("h-full","w-full");
+            hoverImageDiv.append(hoverImageTag);
+
+            const watchNowDiv = document.createElement("div");
+            watchNowDiv.classList.add("border-2","border-green-500","h-20");
+
+            const watchNowButton = document.createElement("button");
+            watchNowButton.textContent = "Watch Now";
+            watchNowButton.classList.add("shadow-md","h-[5rem]","w-full","bg-black","text-white","text-center","italic","p-2","text-2xl");
+            watchNowDiv.append(watchNowButton);
+
+            hoverDiv.append(hoverImageDiv,watchNowDiv);
+
+            hoverBox.append(hoverDiv);
+
+        });
+
+        // event for mouse leave hovering
+        posterMainDiv.addEventListener("mouseleave",onMouseLeave);
+
+
+        posterImageDiv.classList.add("border-2","border-green-500","h-60","rounded-lg","cursor-pointer");
+
+        posterDetailsDiv.classList.add("border-2","border-teal-500","h-40","rounded-lg","px-2","relative");
 
         // creating image tag for showing movie images
         const imgTag = document.createElement("img");
@@ -138,4 +177,9 @@ function showMoviePosters(movieListArray){
 function clearSearchIcon(){
     searchBar.value = null;
     movieListDiv.style.display = "none";
+}
+
+// function for mouse leave
+function onMouseLeave(){
+    hoverBox.innerHTML = "";
 }
