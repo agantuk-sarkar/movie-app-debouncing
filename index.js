@@ -26,7 +26,7 @@ searchBar.addEventListener("input",function(){
 
     timeoutId = setTimeout(function(){
         getMovieUrl();
-    },2000);
+    },1000);
 });
 
 // function to get movie url
@@ -154,13 +154,11 @@ function showMoviePosters(movieListArray){
         // Imdb rating
         const imdb_randomNumbers = document.createElement("p");
         imdb_randomNumbers.textContent = Math.round(Math.random() * 10);
-        // console.log("randomNumber:",imdb_randomNumbers);
-
+  
         const imdb_rating = document.createElement("p");
         imdb_rating.textContent = `IMDB: ${imdb_randomNumbers.textContent}`;
         imdb_rating.classList.add("font-semibold","text-lg","italic","text-red-500");
-        // console.log("imdbRating:",imdb_rating);
-
+  
         // appending movie title, release date and imdb rating into details main div.
         posterDetailsDiv.append(movieTiltePTag,releaseDatePTag,imdb_rating);
 
@@ -170,7 +168,7 @@ function showMoviePosters(movieListArray){
         // appending poster main div into movie poster div
         moviePostersDiv.append(posterMainDiv);
 
-    })
+    });
 }
 
 // function for clear search icon
