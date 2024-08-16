@@ -9,38 +9,38 @@
   </head>
   <body>
     <!-- main container wrt to viewport -->
-    <div class="main-container border-2 border-red-500 h-[300vh] relative">
+    <div class="main-container border-transparent h-[300vh] relative">
       <!-- search bar main container -->
       <div
-        class="searchBar-container border-2 border-blue-500 h-[8vh] flex rounded-md shadow-md"
+        class="searchBar-container border-transparent h-[8vh] flex rounded-md shadow-md"
       >
       <!-- image icon for search bar -->
-      <img class="h-full w-[20%] rounded-md border-2 border-green-600" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnIMzRb2s4nX21CaePRB2LoJTEyIf-Ej97yw&s"/>
+      <img class="h-full w-[20%] rounded-md border-transparent" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnIMzRb2s4nX21CaePRB2LoJTEyIf-Ej97yw&s"/>
         <!-- input search field container -->
         <div
-          class="inputSearch-mainContainer border-2 border-green-500 h-full w-[30%] mx-auto relative"
+          class="inputSearch-mainContainer border-transparent h-full w-[30%] mx-auto relative"
         >
           <!-- input box for searching -->
           <input class="border-2 border-black h-full w-full rounded-lg text-2xl shadow-md" type="text" id="search" placeholder="Enter movie name"/>
           <!-- clear search icon -->
-          <i class="clear-search lni lni-cross-circle absolute top-[0.1rem] right-[4rem] text-3xl text-red-500 cursor-pointer"></i>
+          <i class="clear-search lni lni-cross-circle absolute top-[0.4rem] right-[4rem] text-3xl text-red-500 cursor-pointer"></i>
           <!-- showing movie list names -->
-          <div class="movieList-names border-2 border-orange-500 overflow-auto shadow-md z-[99999] bg-white rounded-lg"></div>
+          <div class="movieList-names border-transparent overflow-auto shadow-md z-[99999] bg-white rounded-lg"></div>
         </div>
       </div>
       <!-- poster container -->
-       <div class="poster-mainContainer border-2 border-green-500 min-h-[20vh] mt-[1rem]">
+       <div class="poster-mainContainer border-transparent min-h-[20vh] mt-[1rem]">
         <!-- heading container -->
-         <div class="heading-container border-2 border-red-500 h-[7vh] flex justify-center">
+         <div class="heading-container border-transparent h-[7vh] flex justify-center">
           <h3 class="headingTag italic text-3xl font-semibold text-emerald-500 hidden">List of Movies</h3>
          </div>
          <!-- hover container -->
-          <div class="hover-mainContainer border-2 border-sky-500 min-h-[10vh] w-full sticky top-[3rem]">
+          <div class="hover-mainContainer border-transparent min-h-[10vh] w-full sticky top-[3rem]">
             <!-- hover sub div -->
              <div class="hover-box h-full w-full"></div>
           </div>
          <!-- movie posters -->
-          <div class="movie-posters border-2 border-blue-500 mt-[0.5rem] h-full grid grid-rows-auto grid-cols-4 gap-x-8 gap-y-6"></div>
+          <div class="movie-posters border-transparent mt-[0.5rem] h-full grid grid-rows-auto grid-cols-4 gap-x-8 gap-y-6"></div>
        </div>
     </div>
   </body>
