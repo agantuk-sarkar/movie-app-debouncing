@@ -55,6 +55,8 @@ async function fetchMovieUrl(movieApi){
 
             showMovieList(movie_list_array);
             showMoviePosters(movie_list_array);
+        } else{
+            throw new Error("Its a bad request");
         }
 
     } catch(error){
@@ -92,7 +94,7 @@ function showMoviePosters(movieListArray){
         const posterImageDiv = document.createElement("div");
         const posterDetailsDiv = document.createElement("div");
 
-        posterMainDiv.classList.add("border-2","border-red-500", "h-full","flex","flex-col","justify-between","rounded-lg","shadow-xl","cursor-pointer","hover:shadow-md");
+        posterMainDiv.classList.add("bborder-transparent", "h-full","flex","flex-col","justify-between","rounded-lg","shadow-xl","cursor-pointer","hover:shadow-md");
 
         // event for mouse hover and showing movie poster while hovering
         posterMainDiv.addEventListener("mouseover",function(){
@@ -101,10 +103,10 @@ function showMoviePosters(movieListArray){
 
             const hoverDiv = document.createElement("div");
 
-            hoverDiv.classList.add("border-2","border-sky-600","h-full","w-[20%]","mx-auto","shadow-md","rounded-lg");
+            hoverDiv.classList.add("border-transparent","h-full","w-[20%]","mx-auto","shadow-md","rounded-lg");
 
             const hoverImageDiv = document.createElement("div");
-            hoverImageDiv.classList.add("border-2","border-red-500","h-40");
+            hoverImageDiv.classList.add("border-transparent","h-40");
 
             const hoverImageTag = document.createElement("img");
             hoverImageTag.src = movies.Poster;
@@ -112,7 +114,7 @@ function showMoviePosters(movieListArray){
             hoverImageDiv.append(hoverImageTag);
 
             const watchNowDiv = document.createElement("div");
-            watchNowDiv.classList.add("border-2","border-green-500","h-20");
+            watchNowDiv.classList.add("border-transparent","h-20");
 
             const watchNowButton = document.createElement("button");
             watchNowButton.textContent = "Watch Now";
@@ -129,9 +131,9 @@ function showMoviePosters(movieListArray){
         posterMainDiv.addEventListener("mouseleave",onMouseLeave);
 
 
-        posterImageDiv.classList.add("border-2","border-green-500","h-60","rounded-lg","cursor-pointer");
+        posterImageDiv.classList.add("border-transparent","h-60","rounded-lg","cursor-pointer");
 
-        posterDetailsDiv.classList.add("border-2","border-teal-500","h-40","rounded-lg","px-2","relative");
+        posterDetailsDiv.classList.add("border-transparent","h-40","rounded-lg","px-2","relative");
 
         // creating image tag for showing movie images
         const imgTag = document.createElement("img");
